@@ -1,0 +1,33 @@
+.card-body{
+    h6{
+        font-size: 14px;
+    }
+    h5{
+        color: #0080cd;
+    }
+    p{
+        font-size: 16px;
+    }
+}
+.dateInfo{
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+.card {
+    background-color: #f2f3ff;
+    box-shadow: 0px 0px 2px #ccc;
+}
+.btn-sm{
+    min-width: 100px;
+}
+.title{
+    background: #0080cd;
+    color: #fff;
+    padding: 10px;
+}
+.formAdd{
+    background: #f7f7f7;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}

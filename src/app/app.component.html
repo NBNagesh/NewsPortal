@@ -1,0 +1,97 @@
+<h3 class="text-center title">News Article</h3>
+<div class="container">
+  <div class="clearfix mb-4 mt-4">
+    <div class="float-left">
+      <h5>List of Articles</h5>
+    </div>
+     <div *ngIf="successmessage" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Hey!</strong> New Article added/modified Successfully!.
+      <button (click)="removeMessage()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div *ngIf="deletemessage" class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong></strong> Selected article is Deleted.
+      <button (click)="removeMessage()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+       <div class="float-right">
+      <button type="button" class="btn btn-primary btn-sm">Search Article</button>
+    </div>
+    <div class="float-right mr-4">
+      <input type="text" class="form-control form-control-sm" placeholder="Search Articles" [(ngModel)]="filteredString"/>
+    </div>
+  </div>
+  <form #myForm="ngForm" class="formAdd mb-3 pt-3">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Article Title</label>
+          <input type="text" class="form-control" name= "Title" [(ngModel)]="articleObj.title">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Category</label>
+          
+          <select class="form-control" name= "Category" [(ngModel)]="articleObj.category">
+            <option selected>Choose...</option>
+            <option value="Politics">Politics</option>
+            <option value="Sports">Sports</option>
+            <option value="Entertainment">Entertainment</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" name= "Description" [(ngModel)]="articleObj.description">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Select date</label>
+          <input type="datetime-local" class="form-control" name= "CreatedDT" [(ngModel)]="articleObj.createdDT">
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <div class="col-12">
+      <div class="text-center mb-3">
+       
+        <button type="button" class="btn btn-primary btn-sm" (click)="addArticle(myForm.value)" *ngIf="!isEdit">Create Article</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="updateArticle()" *ngIf="isEdit">Update Article</button>
+      </div>
+    </div>
+   
+    
+  </form>
+  
+  <div class="row">
+    <!-- {{allArticle|json}}  -->
+    <div class="col-4 mb-3"  *ngFor="let art of allArticle |paginate:{itemsPerPage:6,currentPage: p } | search:filteredString">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-0" ng hidden>{{art.id}} </h5>
+          <span class="badge badge-info dateInfo">{{art.createdDT}}</span>
+          <h6 class="card-title mb-0">Article Name </h6>
+          <h5 class="card-title color1">{{art.title}} </h5>
+          <h6 class="card-title mb-0">Category </h6>
+          <h5 class="card-title">{{art.category}} </h5>
+          <h6 class="card-title mb-0">Description </h6>
+          <p class="card-text">{{art.description}}</p>
+          <div class="text-center">
+            <button class="btn btn-outline-primary btn-sm" (click)="editArticle(art)" >Edit</button>
+            &nbsp;<button class="btn btn-outline-danger btn-sm" (click)="deleteArticle(art)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p=$event" class="float-right">
+    </pagination-controls>
+  </div>
+</div>
