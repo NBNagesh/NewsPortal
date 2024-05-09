@@ -31,6 +31,10 @@ export class AppComponent {
       if(response){
         this.getLatestArticle();
         this.successmessage=true;
+        this.articleObj.title='';
+        this.articleObj.category='';;
+        this.articleObj.description='';
+        this.articleObj.createdDT='';
       }
     },(error) => {
       console.log(error);
