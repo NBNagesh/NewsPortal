@@ -34,4 +34,8 @@ ng g p pipes/filter
 
 ## SCSS
 
-
+___________________________________________________________________________
+Step 1: clone repository to local folder
+Step 2: npm install
+Step 3: npm i ngx-pagination
+Step 4: run the project
